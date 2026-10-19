@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible musacomm issue (remove private environment data).
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach raw logs containing private hosts, paths, credentials or workload data.
+        CPU tests do not establish GPU support. Include the exact runtime and benchmark scope.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: musacomm, Python, torch, torch_musa, driver, MCCL versions; GPU model/count.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal command and expected / actual behavior
+      description: Use anonymized paths and host identifiers. Include exit code and audit status.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Size/dtype/layout, reservation and contention context, relevant error only.

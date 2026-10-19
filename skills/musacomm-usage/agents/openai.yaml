@@ -1,0 +1,4 @@
+interface:
+  display_name: "musacomm 使用"
+  short_description: "指导 AI 安装、生成通信测试计划、运行测试并解读结果文件"
+  default_prompt: "用 $musacomm-usage 生成 AllReduce 测试计划，并说明输出结果怎么看。"

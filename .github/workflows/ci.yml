@@ -1,0 +1,38 @@
+name: CPU checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip build
+      - run: python -m pip install --no-deps -e .
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/check_public_tree.py
+      - run: musacomm --help
+      - run: musacomm allreduce --dry-run --sizes 1MiB,16MiB,1GiB --output plan-ci
+      - run: python -m build
+      - run: python scripts/normalize_sdist.py dist/musacomm-*.tar.gz
+      - name: Verify wheel installation outside the checkout
+        shell: bash
+        run: |
+          python -m venv /tmp/musacomm-wheel-check
+          /tmp/musacomm-wheel-check/bin/python -m pip install --no-deps dist/*.whl
+          cd /tmp
+          /tmp/musacomm-wheel-check/bin/musacomm --version
+          /tmp/musacomm-wheel-check/bin/musacomm allreduce --dry-run --sizes 1MiB,1GiB --output plan-wheel-ci

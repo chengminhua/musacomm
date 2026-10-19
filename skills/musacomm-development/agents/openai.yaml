@@ -1,0 +1,4 @@
+interface:
+  display_name: "musacomm 开发"
+  short_description: "指导 AI 修改通信测试实现、补齐回归测试并维护打包和文档"
+  default_prompt: "用 $musacomm-development 修改仓库并补齐对应测试，保持源码目录整洁。"

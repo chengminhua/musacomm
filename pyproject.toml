@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "packaging>=24.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "musacomm"
+version = "0.1.0"
+description = "Single-node communication benchmarks for MUSA GPUs and MCCL"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "musacomm contributors"}]
+keywords = ["musa", "mccl", "communication", "benchmark", "collective"]
+classifiers = [
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Benchmark",
+]
+dependencies = []
+
+[project.scripts]
+musacomm = "musacomm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+include-package-data = false

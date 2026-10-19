@@ -1,0 +1,35 @@
+# Python / packaging
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Measurements contain environment identifiers and must not be published raw.
+results/
+/plan*/
+/result*/
+/musacomm-*/
+*.jsonl
+*.log
+*.csv
+*.tar.gz
+*.whl
+
+# Credentials, local configuration and editor state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id_rsa*
+id_ed25519*
+.idea/
+.vscode/
+.DS_Store
